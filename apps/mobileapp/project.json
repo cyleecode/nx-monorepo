@@ -1,0 +1,167 @@
+{
+    "name": "mobileapp",
+    "$schema": "../../node_modules/nx/schemas/project-schema.json",
+    "projectType": "application",
+    "prefix": "mobileapp",
+    "sourceRoot": "apps/mobileapp/src",
+    "tags": [],
+    "targets": {
+        "build": {
+            "executor": "@angular-devkit/build-angular:browser",
+            "outputs": [
+                "{options.outputPath}"
+            ],
+            "options": {
+                "outputPath": "dist/apps/mobileapp",
+                "index": "apps/mobileapp/src/index.html",
+                "main": "apps/mobileapp/src/main.ts",
+                "polyfills": [
+                    "zone.js"
+                ],
+                "tsConfig": "apps/mobileapp/tsconfig.app.json",
+                "assets": [
+                    {
+                        "glob": "**/*",
+                        "input": "src/assets",
+                        "output": "assets"
+                    },
+                    {
+                        "glob": "**/*.svg",
+                        "input": "node_modules/ionicons/dist/ionicons/svg",
+                        "output": "./svg"
+                    }
+                ],
+                "styles": [
+                    "@angular/material/prebuilt-themes/deeppurple-amber.css",
+                    {
+                        "input": "apps/mobileapp/src/theme/variables.scss"
+                    },
+                    {
+                        "input": "apps/mobileapp/src/global.scss"
+                    }
+                ],
+                "scripts": [],
+                "vendorChunk": true,
+                "extractLicenses": false,
+                "buildOptimizer": false,
+                "sourceMap": true,
+                "optimization": false,
+                "namedChunks": true
+            },
+            "configurations": {
+                "production": {
+                    "fileReplacements": [
+                        {
+                            "replace": "src/environments/environment.ts",
+                            "with": "src/environments/environment.prod.ts"
+                        }
+                    ],
+                    "optimization": true,
+                    "sourceMap": false,
+                    "namedChunks": false,
+                    "extractLicenses": true,
+                    "vendorChunk": false,
+                    "buildOptimizer": true,
+                    "budgets": [
+                        {
+                            "type": "initial",
+                            "maximumWarning": "500kb",
+                            "maximumError": "1mb"
+                        },
+                        {
+                            "type": "anyComponentStyle",
+                            "maximumWarning": "2kb",
+                            "maximumError": "4kb"
+                        }
+                    ],
+                    "outputHashing": "all"
+                },
+                "development": {
+                    "buildOptimizer": false,
+                    "optimization": false,
+                    "vendorChunk": true,
+                    "extractLicenses": false,
+                    "sourceMap": true,
+                    "namedChunks": true
+                }
+            },
+            "defaultConfiguration": "production"
+        },
+        "serve": {
+            "executor": "@angular-devkit/build-angular:dev-server",
+            "configurations": {
+                "production": {
+                    "browserTarget": "mobileapp:build:production"
+                },
+                "development": {
+                    "browserTarget": "mobileapp:build:development"
+                }
+            },
+            "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+            "executor": "@angular-devkit/build-angular:extract-i18n",
+            "options": {
+                "browserTarget": "mobileapp:build"
+            }
+        },
+        "lint": {
+            "executor": "@nx/linter:eslint",
+            "outputs": [
+                "{options.outputFile}"
+            ],
+            "options": {
+                "lintFilePatterns": [
+                    "apps/mobileapp/**/*.ts",
+                    "apps/mobileapp/**/*.html"
+                ]
+            }
+        },
+        "test": {
+            "executor": "@nx/jest:jest",
+            "outputs": [
+                "{workspaceRoot}/coverage/{projectRoot}"
+            ],
+            "options": {
+                "jestConfig": "apps/mobileapp/jest.config.ts",
+                "passWithNoTests": true
+            },
+            "configurations": {
+                "ci": {
+                    "ci": true,
+                    "codeCoverage": true
+                }
+            }
+        },
+        "serve-static": {
+            "executor": "@nx/web:file-server",
+            "options": {
+                "buildTarget": "mobileapp:build"
+            }
+        },
+        "ionic-cordova-build": {
+            "builder": "@ionic/angular-toolkit:cordova-build",
+            "options": {
+                "browserTarget": "app:build"
+            },
+            "configurations": {
+                "production": {
+                    "browserTarget": "app:build:production"
+                }
+            }
+        },
+        "ionic-cordova-serve": {
+            "builder": "@ionic/angular-toolkit:cordova-serve",
+            "options": {
+                "cordovaBuildTarget": "app:ionic-cordova-build",
+                "devServerTarget": "app:serve"
+            },
+            "configurations": {
+                "production": {
+                    "cordovaBuildTarget": "app:ionic-cordova-build:production",
+                    "devServerTarget": "app:serve:production"
+                }
+            }
+        }
+    }
+}

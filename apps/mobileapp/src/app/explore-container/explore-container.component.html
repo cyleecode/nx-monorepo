@@ -1,0 +1,14 @@
+<div id="container">Character image</div>
+<div class="controller">
+  <mat-grid-list cols="3" rowHeight="80px">
+    <mat-grid-tile colspan="1" rowspan="1"></mat-grid-tile>
+    <mat-grid-tile colspan="1" rowspan="1" (click)="moveUp()">up</mat-grid-tile>
+    <mat-grid-tile colspan="1" rowspan="1"></mat-grid-tile>
+    <mat-grid-tile colspan="1" rowspan="1" (click)="moveLeft()">left</mat-grid-tile>
+    <mat-grid-tile colspan="1" rowspan="1"></mat-grid-tile>
+    <mat-grid-tile colspan="1" rowspan="1" (click)="moveRight()">right</mat-grid-tile>
+    <mat-grid-tile colspan="1" rowspan="1"></mat-grid-tile>
+    <mat-grid-tile colspan="1" rowspan="1" (click)="moveDown()">down</mat-grid-tile>
+    <mat-grid-tile colspan="1" rowspan="1"></mat-grid-tile>
+  </mat-grid-list>
+</div>
