@@ -1,33 +1,33 @@
 {
-    "name": "mobileapp-e2e",
-    "$schema": "../../node_modules/nx/schemas/project-schema.json",
-    "sourceRoot": "apps/mobileapp-e2e/src",
-    "projectType": "application",
-    "targets": {
-        "e2e": {
-            "executor": "@nx/cypress:cypress",
-            "options": {
-                "cypressConfig": "apps/mobileapp-e2e/cypress.config.ts",
-                "devServerTarget": "mobileapp:serve:development",
-                "testingType": "e2e"
-            },
-            "configurations": {
-                "production": {
-                    "devServerTarget": "mobileapp:serve:production"
-                },
-                "ci": {
-                    "devServerTarget": "mobileapp:serve-static"
-                }
-            }
+  "name": "mobileapp-e2e",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/mobileapp-e2e/src",
+  "projectType": "application",
+  "targets": {
+    "e2e": {
+      "executor": "@nx/cypress:cypress",
+      "options": {
+        "cypressConfig": "apps/mobileapp-e2e/cypress.config.ts",
+        "devServerTarget": "mobileapp:serve:development",
+        "testingType": "e2e"
+      },
+      "configurations": {
+        "production": {
+          "devServerTarget": "mobileapp:serve:production"
         },
-        "lint": {
-            "executor": "@nx/linter:eslint",
-            "outputs": ["{options.outputFile}"],
-            "options": {
-                "lintFilePatterns": ["apps/mobileapp-e2e/**/*.{js,ts}"]
-            }
+        "ci": {
+          "devServerTarget": "mobileapp:serve-static"
         }
+      }
     },
-    "tags": [],
-    "implicitDependencies": ["mobileapp"]
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/mobileapp-e2e/**/*.{js,ts}"]
+      }
+    }
+  },
+  "tags": [],
+  "implicitDependencies": ["mobileapp"]
 }
